@@ -4,7 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import userRouter from './router/user.router.js';
-import geminiRouter from './router/gemini.router.js'; // 👈 Add this
+import geminiRouter from './router/gemini.router.js';
 import contactRouter from './router/contact.router.js';
 
 dotenv.config();
@@ -16,7 +16,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 app.use("/user", userRouter);
-app.use("/gemini", geminiRouter); // 👈 Add this
-app.use("/contact",contactRouter);
+app.use("/gemini", geminiRouter);
+app.use("/contact", contactRouter);
 
-export default app;
+// ⬇️ Add this to start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`✅ Server is running on port ${PORT}`);
+});
