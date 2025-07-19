@@ -20,7 +20,8 @@ export var save =async(req,res)=>{
     }
 
 catch(err){
-    res.status(500).json({"status":"false"});
+    console.error("Save Error:", err); // This will show real error in console
+    res.status(500).json({ "status": "false", "error": err.message });
 }
 }
 
