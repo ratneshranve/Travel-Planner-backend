@@ -8,11 +8,13 @@ import { randomUUID } from 'crypto';
 export var save =async(req,res)=>{
     var userList = await userSchemaModel.find();
     // console.log(userList);
+    var len = userList.length;
     
+    var _id = (len==0)?1:userList[len-1]._id+1;
 
     var userDetail = req.body;
     //console.log(userDetail);
-    userDetail ={...userDetail,"role":"user","status":1,"info":Date()};
+    userDetail ={...userDetail,"_id":_id,"role":"user","status":1,"info":Date()};
     //console.log(userDetail);
     try{
      const users = await userSchemaModel.create(userDetail)
